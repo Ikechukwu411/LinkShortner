@@ -1,0 +1,44 @@
+.navigation {
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+  background-color: rgb(17, 17, 53);
+  color: red;
+}
+.btnSignUp {
+  background-color: #d44817;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+.btnSignUp:hover {
+  color: white;
+}
+.navItem {
+  font-weight: bold;
+  color: white;
+}
+.navItem:hover {
+  color: black;
+}
+.header {
+  background-color: rgba(209, 236, 242, 0.848);
+}
+.btnheader {
+  color: white;
+  background-color: #d44817;
+  font-weight: bold;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+}
+.btnheader:hover {
+  color: white;
+  background-color: #f48a64;
+}
+
+.inputMod {
+  border: 1px solid red;
+  width: 30%;
+}
+
+.form {
+  padding: auto 5rem;
+  display: flex;
+}
