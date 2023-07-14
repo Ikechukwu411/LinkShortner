@@ -21,7 +21,7 @@ const UrlShortner = () => {
                   />
                 </div>
                 <div className="column auto">
-                  <button className={`button is-medium ${Classes.btnSignUp}`}>
+                  <button className={`button is-medium ${Classes.btnheader}`}>
                     Shorten URL
                   </button>
                 </div>

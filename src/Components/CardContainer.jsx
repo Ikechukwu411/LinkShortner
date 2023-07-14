@@ -1,8 +1,10 @@
 import React from "react";
 import Classes from "./Navbar.module.css";
 import { CgRadioChecked } from "react-icons/cg";
+import { FaQrcode } from "react-icons/fa";
 
 const CardContainer = ({
+  icon,
   name,
   description,
   description2,
@@ -17,8 +19,9 @@ const CardContainer = ({
     <React.Fragment>
       <div className="column">
         <div className="card box">
-          <h3 className="is-size-4" style={style}>
-            {name}
+          <h3 className="is-size-4 my-3" style={style}>
+            <span className="mr-2">{icon}</span>
+            <span>{name}</span>
           </h3>
           <p style={style2}>{description}</p>
           <hr className="divider" />

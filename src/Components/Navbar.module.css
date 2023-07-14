@@ -3,6 +3,9 @@
   background-color: rgb(17, 17, 53);
   color: red;
 }
+.navigation .active {
+  background-color: white;
+}
 .btnSignUp {
   background-color: #d44817;
   color: white;
@@ -38,7 +41,15 @@
   width: 30%;
 }
 
-.form {
-  padding: auto 5rem;
-  display: flex;
+.review {
+  background-color: rgba(232, 244, 247, 0.848);
+}
+
+.remove div:first-child {
+  transform: translateX(-150%);
+  opacity: 0;
+}
+.remove div:last-child {
+  transform: translateX(150%);
+  opacity: 0;
 }
