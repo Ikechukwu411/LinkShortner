@@ -19,6 +19,7 @@ const Offer = () => {
           </button>
         </div>
       </section>
+      <div className="mb-2"></div>
     </React.Fragment>
   );
 };

@@ -58,15 +58,13 @@ const Carousel = () => {
               What SnapUrl Customers Are Saying
             </h3>
             <div className={`card box ${Classes.review}`}>
-              {/* <div className="has-text-centered">
-                <figure className="image is-128x128"> */}
+            
               <img
                 className="is-rounded"
                 src={reviewData[count].image}
                 width={100}
               />
-              {/* </figure>
-              </div> */}
+              
               <h1 style={style}>{reviewData[count].name}</h1>
               <h2 style={style2} className="is-size-5">
                 {reviewData[count].Job}
