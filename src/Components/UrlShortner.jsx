@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Classes from "./Navbar.module.css";
 
-const UrlShortner = () => {
+const UrlShortner = ({ getValue }) => {
+  const [value, setValue] = useState("");
   const style = { color: "#111135", fontWeight: "bold" };
+
+  const onChangeHandler = (e) => {
+    setValue(e.target.value);
+  };
+
+  const submitHandle = (e) => {
+    e.preventDefault();
+    getValue(value);
+    setValue("");
+  };
+
   return (
     <React.Fragment>
       <section className="section">
@@ -11,10 +23,12 @@ const UrlShortner = () => {
             <p className="is-size-4 mb-5 pt-5" style={style}>
               Shorten a long link
             </p>
-            <form action="">
+            <form action="" onSubmit={submitHandle}>
               <div className="columns px-5">
                 <div className="column is-four-fifths">
                   <input
+                    onChange={onChangeHandler}
+                    value={value}
                     type="text"
                     className="input is-medium"
                     placeholder="https://Example.shorten-a-long-link.shorten.it"

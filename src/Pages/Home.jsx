@@ -10,7 +10,14 @@ import Offer from "../Components/Offer";
 
 const Home = () => {
   const [isIntersecting, setIntersecting] = useState(false);
+  const [link, setLink] = useState("");
   const ref = useRef(null);
+
+  const getValue = (val) => {
+    setLink(val);
+    console.log(`link is located at the home component`);
+  };
+  console.log(link);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -73,7 +80,7 @@ const Home = () => {
         </div>
       </header>
       <main>
-        <UrlShortner />
+        <UrlShortner getValue={getValue} />
         <Cards />
         <Carousel />
         <Offer />
