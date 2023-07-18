@@ -1,22 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Classes from "../Components/Navbar.module.css";
 import { FaGripfire } from "react-icons/fa";
+import SignInjpeg from "../assets/signin.png";
 import "../index.css";
+import LoginForm from "./LoginForm";
 
 const Login = () => {
   const style = { color: "#d44817", fontWeight: "bold" };
-
-  const [userName, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(userName, password);
-    setPassword("");
-    setUsername("");
-  };
-
   return (
     <React.Fragment>
       <section
@@ -33,38 +24,14 @@ const Login = () => {
         </div>
         <div className="container cont ">
           <div className="card box ">
-            <form
-              onSubmit={handleSubmit}
-              style={{ color: "#111135", fontWeight: "bold" }}
-            >
-              <div className="field">
-                <label htmlFor="username">UserName :</label>
-                <input
-                  type="text"
-                  className="input"
-                  id="username"
-                  value={userName}
-                  onChange={(e) => {
-                    setUsername(e.target.value);
-                  }}
-                />
+            <div className="columns">
+              <div className="column">
+                <img src={SignInjpeg} alt="login" />
               </div>
-              <div className="field">
-                <label htmlFor="password">Password :</label>
-                <input
-                  type="password"
-                  className="input"
-                  id="password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                />
+              <div className="column">
+                <LoginForm />
               </div>
-              <button className="button is-primary" type="submit">
-                Login
-              </button>
-            </form>
+            </div>
           </div>
           <p>
             <span>Dont have any account ? </span>
