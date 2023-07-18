@@ -123,7 +123,9 @@ const SignUpForm = () => {
             <div style={{ color: "red" }}>{formik.errors.confirm}</div>
           ) : null}
         </div>
-        <button className="button is-primary">Submit</button>
+        <button className="button is-primary" type="submit">
+          Submit
+        </button>
       </form>
     </React.Fragment>
   );

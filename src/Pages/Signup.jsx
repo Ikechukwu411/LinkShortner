@@ -23,16 +23,16 @@ const Signup = () => {
         </div>
         <div className="container cont">
           <div className="card box">
-            <div className="has-text-centered">
-              <h1 className="is-size-3 pb-5" style={{ color: "#111135" }}>
-                Sign Up
-              </h1>
-            </div>
             <div className="columns">
-              <div className="column">
+              <div className="column pt-6 mt-6">
                 <img src={signUp} alt="signup" />
               </div>
               <div className="column">
+                <div className="has-text-centered">
+                  <h1 className="is-size-3 pb-5" style={{ color: "#111135" }}>
+                    Sign Up
+                  </h1>
+                </div>
                 <SignUpForm />
               </div>
             </div>
