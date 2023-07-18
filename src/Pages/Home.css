@@ -1,5 +1,5 @@
 .slide-in {
-  transform: translateY(0) !important;
+  transform: translateX(0) !important;
   opacity: 1 !important;
   transition: all ease-in 1.1s;
 }

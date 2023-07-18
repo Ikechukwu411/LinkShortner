@@ -5,6 +5,7 @@ import Classes from "../Components/Navbar.module.css";
 import Paul from "../assets/ike.jpg";
 import Chibuu from "../assets/chibuu.jpg";
 import Franklin from "../assets/Franklin.jpg";
+import "../index.css";
 
 const reviewData = [
   {
@@ -49,7 +50,7 @@ const Carousel = () => {
   return (
     <React.Fragment>
       <section className=" section">
-        <div className={`container has-text-centered `}>
+        <div className={`container has-text-centered containerSub `}>
           <div className="column">
             <h3
               className="is-size-3-desktop is-size-4-mobile mb-3"
@@ -58,13 +59,12 @@ const Carousel = () => {
               What SnapUrl Customers Are Saying
             </h3>
             <div className={`card box ${Classes.review}`}>
-            
               <img
                 className="is-rounded"
                 src={reviewData[count].image}
                 width={100}
               />
-              
+
               <h1 style={style}>{reviewData[count].name}</h1>
               <h2 style={style2} className="is-size-5">
                 {reviewData[count].Job}

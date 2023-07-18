@@ -7,6 +7,7 @@ import Carousel from "../Components/Carousel";
 import Footer from "../Components/Footer";
 import "../Pages/Home.css";
 import Offer from "../Components/Offer";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [isIntersecting, setIntersecting] = useState(false);
@@ -69,9 +70,12 @@ const Home = () => {
               >
                 {description}
               </p>
-              <button className={`button is-medium mt-5  ${Classes.btnheader}`}>
+              <Link
+                to="/login"
+                className={`button is-medium mt-5  ${Classes.btnheader}`}
+              >
                 {btnText}
-              </button>
+              </Link>
             </div>
             <div className="column">
               <img src={headerImage} alt="" />

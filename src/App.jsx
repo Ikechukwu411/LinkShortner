@@ -7,6 +7,8 @@ import Pricing from "./Pages/Pricing";
 import Resources from "./Pages/Resources";
 import LinkManagement from "./Pages/LinkManagement";
 import QRCode from "./Pages/QRCode";
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
           <Route path="linkmanager" element={<LinkManagement />} />
           <Route path="qrcode" element={<QRCode />} />
         </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );

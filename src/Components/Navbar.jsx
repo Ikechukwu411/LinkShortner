@@ -83,18 +83,24 @@ const Navbar = () => {
           </div>
           <div className="navbar-end">
             <div className="navbar-item">
-              <button className="button" type="submit" onClick={handleClick}>
+              <Link
+                to="/login"
+                className="button"
+                type="submit"
+                onClick={handleClick}
+              >
                 Login
-              </button>
+              </Link>
             </div>
             <div className="navbar-item">
-              <button
+              <Link
+                to="/signup"
                 className={`button ${Classes.btnheader}`}
                 onClick={handleClick}
               >
                 {" "}
                 Sign Up
-              </button>
+              </Link>
             </div>
           </div>
         </div>

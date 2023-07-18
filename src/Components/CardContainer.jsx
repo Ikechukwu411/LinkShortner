@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Classes from "./Navbar.module.css";
 import { CgRadioChecked } from "react-icons/cg";
 import { FaQrcode } from "react-icons/fa";
@@ -54,9 +55,13 @@ const CardContainer = ({
               <span>{li4}</span>
             </li>
           </ul>
-          <button className={`button ${Classes.btnheader}`} type="submit">
+          <Link
+            to="/login"
+            className={`button ${Classes.btnheader}`}
+            type="submit"
+          >
             Get Started For Free
-          </button>
+          </Link>
         </div>
       </div>
     </React.Fragment>

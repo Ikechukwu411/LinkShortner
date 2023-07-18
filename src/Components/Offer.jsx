@@ -1,5 +1,6 @@
 import React from "react";
 import Classes from "../Components/Navbar.module.css";
+import { Link } from "react-router-dom";
 
 const Offer = () => {
   const offerText = `More than a free link shortener`;
@@ -14,9 +15,9 @@ const Offer = () => {
           >
             {offerText}
           </h3>
-          <button className={`button ${Classes.btnheader}`}>
+          <Link to="/login" className={`button ${Classes.btnheader}`}>
             Get Started For Free
-          </button>
+          </Link>
         </div>
       </section>
       <div className="mb-2"></div>
