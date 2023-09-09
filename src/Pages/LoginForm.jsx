@@ -1,5 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../../Context/AuthContext";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const validate = (values) => {
   const errors = {};
@@ -18,21 +23,33 @@ const validate = (values) => {
 };
 
 const LoginForm = () => {
+  const { logIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     validate,
-    onSubmit: (values, { resetForm }) => {
-      console.log(JSON.stringify(values, null, 2));
+    onSubmit: async (values, { resetForm }) => {
+      // console.log(values);
       resetForm({ values: "" });
+      try {
+        await logIn(values.email, values.password);
+        toast.success("Success");
+        navigate("/dashboard");
+      } catch (error) {
+        toast.error("Check Your Password.");
+        console.log(error);
+      }
     },
   });
 
   return (
     <React.Fragment>
       <form onSubmit={formik.handleSubmit}>
+        <ToastContainer />
         <div
           className="has-text-centered is-size-4-desktop is-size-5-mobile pb-5"
           style={{ color: "#111135", fontWeight: "bold" }}

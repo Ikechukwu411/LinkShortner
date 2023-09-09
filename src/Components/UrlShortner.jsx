@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Classes from "./Navbar.module.css";
+import "../Components/UrlShortner.css";
 
 const UrlShortner = ({ getValue }) => {
   const [value, setValue] = useState("");

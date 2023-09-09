@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Outlet, Link, NavLink } from "react-router-dom";
 import Classes from "./Navbar.module.css";
 import { FaGripfire } from "react-icons/fa";
 import { BiLinkAlt } from "react-icons/bi";
 import { FaQrcode } from "react-icons/fa";
+import AuthContext from "../../Context/AuthContext";
 
 const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
+  const { currentUser } = useContext(AuthContext);
+
   const handleClick = () => {
     setIsActive(false);
   };
   const style = { color: "#d44817" };
+
   return (
     <React.Fragment>
       <nav className={`navbar is-fixed-top ${Classes.navigation}`}>
@@ -64,6 +68,7 @@ const Navbar = () => {
                 </a>
               </div>
             </div>
+
             <NavLink
               activeClassName={Classes.active}
               to="/pricing"
@@ -72,6 +77,7 @@ const Navbar = () => {
             >
               Pricing
             </NavLink>
+
             <NavLink
               activeClassName={Classes.active}
               to="/resources"
@@ -83,28 +89,45 @@ const Navbar = () => {
           </div>
           <div className="navbar-end">
             <div className="navbar-item">
-              <Link
-                to="/login"
-                className="button"
-                type="submit"
-                onClick={handleClick}
-              >
-                Login
-              </Link>
+              {!currentUser && (
+                <Link
+                  to="/login"
+                  className="button"
+                  type="submit"
+                  onClick={handleClick}
+                >
+                  Login
+                </Link>
+              )}
             </div>
             <div className="navbar-item">
-              <Link
-                to="/signup"
-                className={`button ${Classes.btnheader}`}
-                onClick={handleClick}
-              >
-                {" "}
-                Sign Up
-              </Link>
+              {!currentUser && (
+                <Link
+                  to="/signup"
+                  className={`button ${Classes.btnheader}`}
+                  onClick={handleClick}
+                >
+                  {" "}
+                  Sign Up
+                </Link>
+              )}
+            </div>
+            <div className="navbar-item">
+              {currentUser && (
+                <Link
+                  to="/dashboard"
+                  className={`button ${Classes.btnheader}`}
+                  onClick={handleClick}
+                >
+                  {" "}
+                  {currentUser.email}
+                </Link>
+              )}
             </div>
           </div>
         </div>
       </nav>
+
       <Outlet />
     </React.Fragment>
   );

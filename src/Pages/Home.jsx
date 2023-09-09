@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import Classes from "../Components/Navbar.module.css";
 import headerImage from "../assets/backgroundImage-removebg-preview.png";
 import UrlShortner from "../Components/UrlShortner";
@@ -8,6 +8,8 @@ import Footer from "../Components/Footer";
 import "../Pages/Home.css";
 import Offer from "../Components/Offer";
 import { Link } from "react-router-dom";
+
+// import MovableSlider from "../Components/MovableSlider";
 
 const Home = () => {
   const [isIntersecting, setIntersecting] = useState(false);
@@ -88,6 +90,7 @@ const Home = () => {
         <Cards />
         <Carousel />
         <Offer />
+        {/* <MovableSlider /> */}
       </main>
       <footer>
         <Footer />

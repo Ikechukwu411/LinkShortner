@@ -53,3 +53,11 @@
   transform: translateX(150%);
   opacity: 0;
 }
+
+.dashboardbackground {
+  background-color: #f4f6fa;
+}
+
+.borderLink {
+  border: 0.2px solid rgb(215, 215, 215);
+}

@@ -33,6 +33,7 @@ const Signup = () => {
                     Sign Up
                   </h1>
                 </div>
+
                 <SignUpForm />
               </div>
             </div>

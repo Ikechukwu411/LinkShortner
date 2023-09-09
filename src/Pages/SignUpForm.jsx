@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
+import AuthContext from "../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
+// import { db } from "../../Firebase/firebaseconfig";
+// import { addDoc, collection } from "firebase/firestore";
 
 const validate = (values) => {
   const errors = {};
@@ -30,6 +34,9 @@ const validate = (values) => {
 };
 
 const SignUpForm = () => {
+  const { signUp, currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       fullname: "",
@@ -38,9 +45,22 @@ const SignUpForm = () => {
       confirm: "",
     },
     validate,
-    onSubmit: (values, { resetForm }) => {
-      console.log(JSON.stringify(values, null, 2));
+    onSubmit: async (values, { resetForm }) => {
+      // console.log(values);
       resetForm({ value: "" });
+      try {
+        await signUp(values.email, values.password).then(() => {
+          navigate("/login");
+        });
+        // const docRef = await addDoc(collection(db, "users"), {
+        //   fullname: values.fullname,
+        // });
+        // console.log("document written with id", docRef.id);
+
+        console.log(currentUser.email);
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
@@ -91,7 +111,7 @@ const SignUpForm = () => {
           </label>
           <div className="control">
             <input
-              type="text"
+              type="password"
               className="input"
               id="password"
               name="password"
@@ -110,7 +130,7 @@ const SignUpForm = () => {
           </label>
           <div className="control">
             <input
-              type="text"
+              type="password"
               className="input"
               id="confirm"
               name="confirm"
