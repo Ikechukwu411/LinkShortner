@@ -1,11 +1,52 @@
 import DashboardNav from "./DashboardNav";
 import SideBar from "./SideBar";
 import "../../App.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../Context/AuthContext";
+import { db } from "../../../Firebase/firebaseconfig";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 const Settings = () => {
   const { currentUser } = useContext(AuthContext);
+  const [userName, setUserName] = useState("");
+  const [IsInputFocused, setIsInputFocused] = useState(false);
+  const [updateProfile, setProfileName] = useState("");
+
+  const userId2 = currentUser.uid;
+
+  useEffect(() => {
+    fetchuserData();
+  }, []);
+
+  const fetchuserData = async () => {
+    const data = await getDoc(doc(db, "users", userId2));
+    // console.log(data);
+    if (data.exists()) {
+      setUserName(data.data().name);
+      // console.log(data);
+    } else {
+      console.log("error");
+    }
+  };
+
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  };
+
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
+  };
+  const newPlaceholder = IsInputFocused ? "Update Name" : userName;
+
+  const updateUserProfile = async (e) => {
+    e.preventDefault();
+    const userCollection = doc(db, "users", userId2);
+    await updateDoc(userCollection, {
+      name: updateProfile,
+    });
+    setProfileName("");
+  };
+
   return (
     <div id="app">
       <DashboardNav />
@@ -18,17 +59,23 @@ const Settings = () => {
           <div style={{ color: "#273144" }}>
             <p className="is-size-3 mb-2 is-family-primary is-bold">Profile</p>
             <p className="mb-3 has-text-weight-bold is-size-5">Preferences</p>
-            <form>
+            <form onSubmit={updateUserProfile}>
               <label htmlFor="name has-text-weight-bold mb-2">
-                Display Name:{" "}
+                Display Name: {userName}
               </label>
               <input
                 className="input mt-2"
                 type="text"
                 id="name"
-                placeholder="Your Name"
+                onChange={(e) => {
+                  setProfileName(e.target.value);
+                }}
+                placeholder={newPlaceholder}
+                onFocus={handleInputFocus}
+                onBlur={handleInputBlur}
+                value={updateProfile}
               />
-              <button className="button is-primary mt-5" disabled>
+              <button className="button is-info mt-5">
                 Update Display Name
               </button>
             </form>

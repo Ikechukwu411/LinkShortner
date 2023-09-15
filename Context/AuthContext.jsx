@@ -13,10 +13,13 @@ const AuthContext = React.createContext({
   logIn: (email, password) => {},
   signOut: () => {},
   sidebarT: () => {},
+  userIdFunc: () => {},
+  userId: "",
 });
 
 export const AuthContextProvider = (props) => {
   const [currentUser, setcurrentUser] = useState("");
+  const [userId, setUserId] = useState("");
   const [sidebar, setSidebar] = useState(false);
 
   const signUpHandler = (email, password) => {
@@ -37,6 +40,10 @@ export const AuthContextProvider = (props) => {
     setSidebar(!sidebar);
   };
 
+  const userIdHandler = (id) => {
+    return setUserId(id);
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setcurrentUser(user);
@@ -50,6 +57,8 @@ export const AuthContextProvider = (props) => {
     logIn: logInHandler,
     signOut: signOutHandler,
     sidebarT: sidebarToggler,
+    userIdFunc: userIdHandler,
+    userId: userId,
   };
 
   return (

@@ -12,39 +12,52 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Links from "./Pages/Dashboard/Links";
 import QRCCode from "./Pages/Dashboard/QRCCode";
 import Bio from "./Pages/Dashboard/Bio";
+import Campaigns from "./Pages/Dashboard/Campaigns";
 import Custom from "./Pages/Dashboard/Custom";
 import AuthContext from "../Context/AuthContext";
 import { useContext } from "react";
 import Settings from "./Pages/Dashboard/Settings";
-import ProtectedRoutes from "../Firebase/ProtectedRoutes";
+import CreateNew from "./Pages/Dashboard/CreateNew";
+// import ProtectedRoutes from "../Firebase/ProtectedRoutes";
 
 const App = () => {
   const { currentUser } = useContext(AuthContext);
+
+  // Define routes for authenticated users
+  const authenticatedRoutes = (
+    <>
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/link" element={<Links />} />
+      <Route path="/qrcode2" element={<QRCCode />} />
+      <Route path="/bio" element={<Bio />} />
+      <Route path="/campaigns" element={<Campaigns />} />
+      <Route path="/custom" element={<Custom />} />
+      <Route path="/settings" element={<Settings />} />
+      <Route path="/createnew" element={<CreateNew />} />
+      <Route path="*" element={<Navigate to="/dashboard" />} />
+    </>
+  );
+
+  // Define routes for non-authenticated users
+  const nonAuthenticatedRoutes = (
+    <>
+      <Route path="/" element={<Navbar />}>
+        <Route index element={<Home />} />
+        <Route path="pricing" element={<Pricing />} />
+        <Route path="resources" element={<Resources />} />
+        <Route path="linkmanager" element={<LinkManagement />} />
+        <Route path="qrcode" element={<QRCode />} />
+      </Route>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="*" element={<Navigate to="/" />} />
+    </>
+  );
+
   return (
     <BrowserRouter>
       <Routes>
-        {!currentUser && (
-          <Route path="/" element={<Navbar />}>
-            <Route index element={<Home />} />
-            <Route path="pricing" element={<Pricing />} />
-            <Route path="resources" element={<Resources />} />
-            <Route path="linkmanager" element={<LinkManagement />} />
-            <Route path="qrcode" element={<QRCode />} />
-          </Route>
-        )}
-        {!currentUser && <Route path="/login" element={<Login />} />}
-        {!currentUser && <Route path="/signup" element={<Signup />} />}
-        <ProtectedRoutes path="/dashboard" element={<Dashboard />} />
-        {currentUser && <Route path="/link" element={<Links />} />}
-        {currentUser && <Route path="/qrcode2" element={<QRCCode />} />}
-        {currentUser && <Route path="/bio" element={<Bio />} />}
-        {currentUser && <Route path="/campaigns" element={<Bio />} />}
-        {currentUser && <Route path="/custom" element={<Custom />} />}
-        {currentUser && <Route path="/settings" element={<Settings />} />}
-        {/* {currentUser && (
-          <Route path="*" element={<Navigate to="/dashboard" />} />
-        )} */}
-        {!currentUser && <Route path="*" element={<Navigate to="/" />} />}
+        {currentUser ? authenticatedRoutes : nonAuthenticatedRoutes}
       </Routes>
     </BrowserRouter>
   );

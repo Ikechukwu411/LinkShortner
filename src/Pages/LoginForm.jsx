@@ -23,8 +23,9 @@ const validate = (values) => {
 };
 
 const LoginForm = () => {
-  const { logIn } = useContext(AuthContext);
+  const { logIn, userId } = useContext(AuthContext);
   const navigate = useNavigate();
+  console.log(userId);
 
   const formik = useFormik({
     initialValues: {
@@ -36,9 +37,12 @@ const LoginForm = () => {
       // console.log(values);
       resetForm({ values: "" });
       try {
-        await logIn(values.email, values.password);
-        toast.success("Success");
-        navigate("/dashboard");
+        logIn(values.email, values.password).then(() => {
+          navigate("/dashboard");
+        });
+        toast.success("Login successful", {
+          autoClose: 3000,
+        });
       } catch (error) {
         toast.error("Check Your Password.");
         console.log(error);
@@ -48,8 +52,8 @@ const LoginForm = () => {
 
   return (
     <React.Fragment>
+      <ToastContainer />
       <form onSubmit={formik.handleSubmit}>
-        <ToastContainer />
         <div
           className="has-text-centered is-size-4-desktop is-size-5-mobile pb-5"
           style={{ color: "#111135", fontWeight: "bold" }}

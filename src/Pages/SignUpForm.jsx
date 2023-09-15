@@ -2,8 +2,11 @@ import React, { useContext } from "react";
 import { useFormik } from "formik";
 import AuthContext from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
-// import { db } from "../../Firebase/firebaseconfig";
-// import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../Firebase/firebaseconfig";
+import { doc, setDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const validate = (values) => {
   const errors = {};
@@ -34,7 +37,7 @@ const validate = (values) => {
 };
 
 const SignUpForm = () => {
-  const { signUp, currentUser } = useContext(AuthContext);
+  const { signUp, currentUser, userIdFunc, userId } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -49,14 +52,18 @@ const SignUpForm = () => {
       // console.log(values);
       resetForm({ value: "" });
       try {
-        await signUp(values.email, values.password).then(() => {
-          navigate("/login");
+        const userCredential = await signUp(values.email, values.password);
+        // console.log(userCredential.user);
+        userIdFunc(userCredential.user.uid);
+        console.log(userCredential.user.uid);
+        setDoc(doc(db, "users", userCredential.user.uid), {
+          name: values.fullname,
         });
-        // const docRef = await addDoc(collection(db, "users"), {
-        //   fullname: values.fullname,
-        // });
-        // console.log("document written with id", docRef.id);
+        navigate("/login");
 
+        toast.success("successfull sign-up", {
+          autoClose: 3000,
+        });
         console.log(currentUser.email);
       } catch (error) {
         console.log(error);
@@ -66,6 +73,7 @@ const SignUpForm = () => {
 
   return (
     <React.Fragment>
+      <ToastContainer />
       <form onSubmit={formik.handleSubmit}>
         <div className="field">
           <label htmlFor="fullname" className="label">

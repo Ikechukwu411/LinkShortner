@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
@@ -43,6 +43,12 @@ const DashboardNav = () => {
           <div className="navbar-end navbar-menu">
             <Link
               className="navbar-item is-tab is-hidden-tablet"
+              to="/createnew"
+            >
+              <button className="button is-info">Create New</button>
+            </Link>
+            <Link
+              className="navbar-item is-tab is-hidden-tablet"
               to="/dashboard"
             >
               Home
@@ -65,9 +71,13 @@ const DashboardNav = () => {
             <Link className="navbar-item is-tab is-hidden-tablet" to="/custom">
               customs
             </Link>
-            <Link className="navbar-item is-tab is-hidden-tablet">
+            <Link
+              to="/settings"
+              className="navbar-item is-tab is-hidden-tablet"
+            >
               Settings
             </Link>
+
             <Link to="/settings" className="navbar-item is-tab is-active">
               <span className="icon">
                 <FaUserAlt />

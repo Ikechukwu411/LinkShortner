@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { FaQrcode } from "react-icons/fa";
 import { MdDatasetLinked } from "react-icons/md";
@@ -14,6 +14,12 @@ const SideBar = () => {
       className="column is-2 is-narrow-mobile is-fullheight section is-hidden-mobile aside"
       style={{ color: "#273144" }}
     >
+      <div className="my-3">
+        <NavLink to="/createnew" className="button is-info">
+          {" "}
+          Create new
+        </NavLink>
+      </div>
       <ul className="menu-list">
         <li className="pb-2">
           <NavLink to="/dashboard" activeClassName="active-link">
