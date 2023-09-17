@@ -2,13 +2,31 @@ import DashboardNav from "./DashboardNav";
 import SideBar from "./SideBar";
 import "../../App.css";
 import { useState } from "react";
+import { db } from "../../../Firebase/firebaseconfig";
+import { collection, addDoc } from "firebase/firestore";
 
 const CreateNew = () => {
   const [isSubmitted, setisSubmitted] = useState(false);
+  const [longurl, setLongUrl] = useState("");
+  const [title, setTitle] = useState("");
+  const [shortUrl, setShortUrl] = useState("");
 
-  const handlesubmit = (e) => {
+  const handlesubmit = async (e) => {
     e.preventDefault();
     setisSubmitted(true);
+    try {
+      const docRef = await collection(db, "shorturls");
+      const values = {
+        longurl: longurl,
+        title: title,
+      };
+      addDoc(docRef, values).then(() => {
+        console.log("success");
+      });
+      setShortUrl(`http://info-us.co/${docRef.id}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -31,6 +49,9 @@ const CreateNew = () => {
                       className="input"
                       id="destination"
                       placeholder="https://anylink.com"
+                      onChange={(e) => {
+                        setLongUrl(e.target.value);
+                      }}
                     />
                     <p className="my-5">You can create 8 more link</p>
                     <label htmlFor="destination">Title (optional)</label>
@@ -39,6 +60,9 @@ const CreateNew = () => {
                       className="input"
                       id="destination"
                       placeholder="https://anylink.com"
+                      onChange={(e) => {
+                        setTitle(e.target.value);
+                      }}
                     />
                   </div>
                   <button className="button my-3 is-info "> Create</button>
@@ -47,6 +71,12 @@ const CreateNew = () => {
               {isSubmitted && (
                 <div>
                   {" "}
+                  {shortUrl && (
+                    <div>
+                      <p>Shorten Url</p>
+                      <a href={shortUrl}> {shortUrl}</a>
+                    </div>
+                  )}
                   <p>Helllo</p>{" "}
                 </div>
               )}

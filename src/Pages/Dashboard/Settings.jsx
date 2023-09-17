@@ -8,6 +8,7 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 const Settings = () => {
   const { currentUser } = useContext(AuthContext);
+  const [profile, setProfile] = useState("");
   const [userName, setUserName] = useState("");
   const [IsInputFocused, setIsInputFocused] = useState(false);
   const [updateProfile, setProfileName] = useState("");
@@ -22,7 +23,8 @@ const Settings = () => {
     const data = await getDoc(doc(db, "users", userId2));
     // console.log(data);
     if (data.exists()) {
-      setUserName(data.data().name);
+      // setUserName(data.data().name);
+      setProfile(data.data().name);
       // console.log(data);
     } else {
       console.log("error");
@@ -38,14 +40,33 @@ const Settings = () => {
   };
   const newPlaceholder = IsInputFocused ? "Update Name" : userName;
 
+  //
+
+  useEffect(() => {
+    console.log("hvghvg");
+  }, [userId2]);
+
+  // const updateUserProfile = async (e) => {
+  //   e.preventDefault();
+  //   const userCollection = doc(db, "users", userId2);
+  //   await updateDoc(userCollection, {
+  //     name: updateProfile,
+  //   });
+  //   setProfileName("");
+  // };
   const updateUserProfile = async (e) => {
     e.preventDefault();
     const userCollection = doc(db, "users", userId2);
+    const updatedName = updateProfile; // Assuming 'updateProfile' is the username you want to log
+    console.log(`Updating profile for user: ${updatedName}`);
+    setProfile(updatedName);
     await updateDoc(userCollection, {
-      name: updateProfile,
+      name: updatedName,
     });
     setProfileName("");
   };
+
+  console.log(userName);
 
   return (
     <div id="app">
@@ -61,7 +82,7 @@ const Settings = () => {
             <p className="mb-3 has-text-weight-bold is-size-5">Preferences</p>
             <form onSubmit={updateUserProfile}>
               <label htmlFor="name has-text-weight-bold mb-2">
-                Display Name: {userName}
+                Display Name: {profile}
               </label>
               <input
                 className="input mt-2"

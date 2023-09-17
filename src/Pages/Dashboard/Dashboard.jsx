@@ -77,6 +77,9 @@ const Dashboard = () => {
                     <p>1 0f 10used</p>
                   </div>
                 </div>
+                <progress className="progress is-link" value="10" max="100">
+                  30%
+                </progress>
               </div>
               <div className="column box mx-3"></div>
             </div>
