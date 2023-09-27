@@ -68,3 +68,21 @@ body,
   text-align: center;
   border-radius: 100%;
 }
+.shortener__viewShot {
+  margin-top: 20px;
+  border: 1px solid gainsboro;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  color: rgb(64, 64, 66);
+  align-items: center;
+}
+.shortener__viewShot button {
+  background-color: transparent;
+  border: none;
+  color: red;
+  padding: 1rem;
+}
+.shortener__viewShot button:hover {
+  color: rgb(64, 64, 66);
+}

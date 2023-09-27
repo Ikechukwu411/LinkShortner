@@ -51,7 +51,7 @@ export const AuthContextProvider = (props) => {
     return unsubscribe;
   }, []);
 
-  console.log(currentUser);
+  // console.log(currentUser);
 
   const value = {
     currentUser: currentUser,

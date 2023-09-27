@@ -19,11 +19,17 @@ const Dashboard = () => {
             Your Connections Platform
           </h1>
           <div className="section ">
-            <div className="columns box">
-              <div className="column" style={{ border: "1px solid gray" }}>
+            <div className="columns  box">
+              <div
+                className="column mr-2  mb-3 is-full-mobile has-text-centered"
+                style={{ border: "1px solid gray" }}
+              >
                 <div className="columns">
-                  <span className="column" style={{ background: "#F3F9FE" }}>
-                    <img src={image1} alt="" />
+                  <span
+                    className="column is-3"
+                    style={{ background: "#F3F9FE" }}
+                  >
+                    <img src={image1} alt="" width={250} />
                   </span>
                   <span className="column">
                     <p>Make It Short</p>
@@ -33,10 +39,13 @@ const Dashboard = () => {
                   </span>
                 </div>
               </div>
-              <div className="column" style={{ border: "1px solid gray" }}>
+              <div
+                className="column mr-2  mb-3 is-full-mobile has-text-centered"
+                style={{ border: "1px solid gray" }}
+              >
                 <div className="columns">
                   <span className="column">
-                    <img src={image1} alt="" />
+                    <img src={image1} alt="" width={250} />
                   </span>
                   <span className="column">
                     <p>Make It Short</p>
@@ -46,10 +55,13 @@ const Dashboard = () => {
                   </span>
                 </div>
               </div>
-              <div className="column" style={{ border: "1px solid gray" }}>
+              <div
+                className="column mr-2  mb-3 is-full-mobile has-text-centered"
+                style={{ border: "1px solid gray" }}
+              >
                 <div className="columns">
                   <span className="column">
-                    <img src={image1} alt="" />
+                    <img src={image1} alt="" width={250} />
                   </span>
                   <span className="column">
                     <p>Make It Short</p>

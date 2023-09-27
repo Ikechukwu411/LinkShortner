@@ -58,7 +58,7 @@ const LoginForm = () => {
           className="has-text-centered is-size-4-desktop is-size-5-mobile pb-5"
           style={{ color: "#111135", fontWeight: "bold" }}
         >
-          <h1>Welcome Back</h1>
+          <h1 className="is-size-4">Welcome Back</h1>
         </div>
         <div className="field">
           <label htmlFor="email" className="label">

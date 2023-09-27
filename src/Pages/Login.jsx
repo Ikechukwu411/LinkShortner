@@ -25,8 +25,8 @@ const Login = () => {
         <div className="container cont ">
           <div className="card box ">
             <div className="columns">
-              <div className="column">
-                <img src={SignInjpeg} alt="login" />
+              <div className="column imageGalerry">
+                <img src={SignInjpeg} alt="login" width={200} />
               </div>
               <div className="column">
                 <LoginForm />
