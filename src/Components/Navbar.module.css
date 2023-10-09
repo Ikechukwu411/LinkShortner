@@ -24,6 +24,8 @@
 }
 .header {
   background-color: rgba(209, 236, 242, 0.848);
+  /* width: 100%; */
+  /* height: 100vh; */
 }
 .btnheader {
   color: white;
@@ -48,10 +50,12 @@
 .remove div:first-child {
   transform: translateX(-150%);
   opacity: 0;
+  overflow-x: hidden;
 }
 .remove div:last-child {
   transform: translateX(150%);
   opacity: 0;
+  overflow-x: hidden;
 }
 
 .dashboardbackground {

@@ -6,13 +6,14 @@ import Cards from "../Components/Cards";
 import Carousel from "../Components/Carousel";
 import Footer from "../Components/Footer";
 import "../Pages/Home.css";
+import "animate.css";
 import Offer from "../Components/Offer";
 import { Link } from "react-router-dom";
 
 // import MovableSlider from "../Components/MovableSlider";
 
 const Home = () => {
-  const [isIntersecting, setIntersecting] = useState(false);
+  // const [isIntersecting, setIntersecting] = useState(false);
   const [link, setLink] = useState("");
   const ref = useRef(null);
 
@@ -23,29 +24,23 @@ const Home = () => {
   console.log(link);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIntersecting(entry.isIntersecting);
-      },
-      {
-        rootMargin: "-100px",
-      }
-    );
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [isIntersecting]);
+    const allsection = document.querySelectorAll(".section");
+    const revealSection = function (entries, observer) {
+      const [entry] = entries;
+      if (!entry.isIntersecting) return;
+      entry.target.classList.remove("section-hidden");
+      observer.unobserve(entry.target);
+    };
+    const sectionObserver = new IntersectionObserver(revealSection, {
+      root: null,
+      threshold: 0.1,
+    });
 
-  useEffect(() => {
-    if (isIntersecting) {
-      ref.current.querySelectorAll("div").forEach((el) => {
-        el.classList.add("slide-in");
-      });
-    } else {
-      ref.current.querySelectorAll("div").forEach((el) => {
-        el.classList.remove("slide-in");
-      });
-    }
-  }, [isIntersecting]);
+    allsection.forEach((section) => {
+      sectionObserver.observe(section);
+      section.classList.add("section-hidden");
+    });
+  }, []);
 
   const style = { color: "#111135" };
   const heroMessage = `Simplify Links, Maximize Engagement`;
@@ -58,38 +53,46 @@ const Home = () => {
     <React.Fragment>
       <header className={`Hero pt-5 ${Classes.header}`}>
         <div className="container">
-          <div className={`columns pt-6 ${Classes.remove}`} ref={ref}>
-            <div className="column has-text-centered-mobile">
+          <div className={`columns pt-6 m-3 ${Classes}`} ref={ref}>
+            <div className="column has-text-centered-mobile animate__animated animate__backInLeft animate__slow 2s">
               <h1
-                className="is-size-2-desktop is-size-4-mobile has-text-weight-bold has-text-centered-mobile"
+                className="is-size-2-desktop is-size-5-mobile has-text-weight-bold "
                 style={style}
               >
                 {heroMessage}
               </h1>
               <p
                 style={style}
-                className="mt-5 is-size-5 has-text-centered-mobile"
+                className="mt-5 is-size-5  is-size-6-mobile has-text-centered-mobile"
               >
                 {description}
               </p>
               <Link
                 to="/login"
-                className={`button is-medium mt-5  ${Classes.btnheader}`}
+                className={`button is-medium is-responsive mt-5  ${Classes.btnheader}`}
               >
                 {btnText}
               </Link>
             </div>
-            <div className="column">
+            <div className="column animate__animated animate__backInRight animate__slow 2s">
               <img src={headerImage} alt="" />
             </div>
           </div>
         </div>
       </header>
       <main>
-        <UrlShortner getValue={getValue} />
-        <Cards />
-        <Carousel />
-        <Offer />
+        <section className="section">
+          <UrlShortner getValue={getValue} />
+        </section>
+        <section className="section">
+          <Cards />
+        </section>
+        <section className="section">
+          <Carousel />
+        </section>
+        <section className="section">
+          <Offer />
+        </section>
         {/* <MovableSlider /> */}
       </main>
       <footer>

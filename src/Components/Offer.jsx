@@ -10,12 +10,15 @@ const Offer = () => {
       <section className="section" style={{ backgroundColor: "#D8EFF4" }}>
         <div className="container has-text-centered">
           <h3
-            className="is-size-3-desktop is-size-4-mobile pb-4"
+            className="is-size-3-desktop is-size-5-mobile pb-4"
             style={{ color: "#111135", fontWeight: "bold" }}
           >
             {offerText}
           </h3>
-          <Link to="/login" className={`button ${Classes.btnheader}`}>
+          <Link
+            to="/login"
+            className={`button is-responsive ${Classes.btnheader}`}
+          >
             Get Started For Free
           </Link>
         </div>

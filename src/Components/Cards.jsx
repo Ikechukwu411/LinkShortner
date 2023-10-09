@@ -52,12 +52,12 @@ const Cards = () => {
       <section className={`section ${Classes.header}`}>
         <div className="container">
           <div
-            className="is-size-4 has-text-centered pb-3"
+            className="is-size-4  is-size-5-mobile has-text-centered pb-3"
             style={{ color: "#111135", fontWeight: "bold" }}
           >
             Our Services
           </div>
-          <div className="columns">{newData}</div>
+          <div className="columns ">{newData}</div>
         </div>
       </section>
     </React.Fragment>

@@ -53,7 +53,7 @@ const Carousel = () => {
         <div className={`container has-text-centered containerSub `}>
           <div className="column">
             <h3
-              className="is-size-3-desktop is-size-4-mobile mb-3"
+              className="is-size-3-desktop is-size-5-mobile mb-3"
               style={style}
             >
               What SnapUrl Customers Are Saying

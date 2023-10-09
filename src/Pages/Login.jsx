@@ -10,10 +10,7 @@ const Login = () => {
   const style = { color: "#d44817", fontWeight: "bold" };
   return (
     <React.Fragment>
-      <section
-        className={`section sec ${Classes.header}`}
-        style={{ color: "#111135", fontWeight: "bold" }}
-      >
+      <section className={`section`}>
         <div className="pb-5">
           <Link to="/" style={style}>
             <span>
@@ -22,17 +19,27 @@ const Login = () => {
             <span className="is-size-4">SnapUrl</span>
           </Link>
         </div>
-        <div className="container cont ">
-          <div className="card box ">
-            <div className="columns">
-              <div className="column imageGalerry">
-                <img src={SignInjpeg} alt="login" width={200} />
-              </div>
-              <div className="column">
-                <LoginForm />
+        <div className="container is-centered">
+          <div className="columns is-centered">
+            <div className="column">
+              <div className="box">
+                <div className="media">
+                  <div className="media-left">
+                    <figure className="image is-128x128">
+                      <img src={SignInjpeg} alt="login" width={200} />
+                    </figure>
+                  </div>
+                  <div className="media-content">
+                    <LoginForm />
+                  </div>
+                </div>
               </div>
             </div>
+            <div className="column">
+              <img src={SignInjpeg} alt="login" className="is-desktop" />
+            </div>
           </div>
+
           <p>
             <span>Dont have any account ? </span>
             <span>
