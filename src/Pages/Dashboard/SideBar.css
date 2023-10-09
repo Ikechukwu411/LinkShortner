@@ -1,0 +1,26 @@
+.menu {
+  /* width: 20%; */
+  border-right: 0.1rem solid #dbe0eb;
+  height: 100vh;
+  font-family: "proxima";
+  font-weight: bold;
+
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+
+.menu .active {
+  /* background-color: rgb(132, 188, 218); */
+  /* color: white; */
+  font-size: 18px;
+  font-weight: 500;
+}
+.menu ul li {
+  padding: 5rem;
+}
+
+/* @media screen and (max-width: 768px) {
+  .menu {
+    display: none;
+  }
+} */

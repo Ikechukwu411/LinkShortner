@@ -1,9 +1,13 @@
 import React from "react";
 import Classes from "./Navbar.module.css";
 import CardContainer from "./CardContainer";
+import { FaQrcode } from "react-icons/fa";
+import { AiOutlineLink } from "react-icons/ai";
+import { ImPriceTags } from "react-icons/im";
 
 const cardsData = [
   {
+    icon: <AiOutlineLink />,
     name: "Link Management",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis possimus nesciunt sequi? Sequi, magnam veritatis.",
@@ -14,6 +18,7 @@ const cardsData = [
     li4: "Advanced Analytics & tracking",
   },
   {
+    icon: <FaQrcode />,
     name: "QR Codes",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis possimus nesciunt sequi? Sequi, magnam veritatis.",
@@ -24,7 +29,8 @@ const cardsData = [
     li4: "Advanced analytics & tracking",
   },
   {
-    name: "Pricing",
+    icon: <ImPriceTags />,
+    name: "Link Sharing",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis possimus nesciunt sequi? Sequi, magnam veritatis.",
     description2: "Lorem ipsum dolor sit",
@@ -45,7 +51,13 @@ const Cards = () => {
     <React.Fragment>
       <section className={`section ${Classes.header}`}>
         <div className="container">
-          <div className="columns">{newData}</div>
+          <div
+            className="is-size-4  is-size-5-mobile has-text-centered pb-3"
+            style={{ color: "#111135", fontWeight: "bold" }}
+          >
+            Our Services
+          </div>
+          <div className="columns ">{newData}</div>
         </div>
       </section>
     </React.Fragment>

@@ -1,29 +1,48 @@
-import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Outlet, Link, NavLink } from "react-router-dom";
 import Classes from "./Navbar.module.css";
 import { FaGripfire } from "react-icons/fa";
 import { BiLinkAlt } from "react-icons/bi";
 import { FaQrcode } from "react-icons/fa";
+import AuthContext from "../../Context/AuthContext";
 
 const Navbar = () => {
+  const [isActive, setIsActive] = useState(false);
+  const { currentUser } = useContext(AuthContext);
+
+  const handleClick = () => {
+    setIsActive(false);
+  };
   const style = { color: "#d44817" };
+
   return (
     <React.Fragment>
       <nav className={`navbar is-fixed-top ${Classes.navigation}`}>
         <div className="navbar-brand">
-          <Link to="/" className="navbar-item" style={style}>
+          <Link
+            to="/"
+            className="navbar-item"
+            style={style}
+            onClick={handleClick}
+          >
             <span>
               <FaGripfire size={25} />
             </span>
             <span className="is-size-4">SnapUrl</span>
           </Link>
-          <a className="navbar-burger">
+          <a
+            className={`navbar-burger burger ${isActive ? "is-active" : ""}`}
+            style={{ color: "#d44817" }}
+            onClick={() => {
+              setIsActive(!isActive);
+            }}
+          >
             <span></span>
             <span></span>
             <span></span>
           </a>
         </div>
-        <div className="navbar-menu">
+        <div className={`navbar-menu ${isActive ? "is-active" : ""}`}>
           <div className="navbar-start">
             <div
               className={`navbar-item has-dropdown is-hoverable ${Classes.navItem}`}
@@ -34,39 +53,81 @@ const Navbar = () => {
                   <span>
                     <BiLinkAlt />
                   </span>
-                  <Link to="/linkmanager">Link Management</Link>
+                  <Link to="/linkmanager" onClick={handleClick}>
+                    Link Management
+                  </Link>
                 </a>
                 <hr className="divider" />
                 <a className="navbar-item">
                   <span>
                     <FaQrcode />
                   </span>
-                  <Link to="/qrcode">QR Code Generator</Link>
+                  <Link to="/qrcode" onClick={handleClick}>
+                    QR Code Generator
+                  </Link>
                 </a>
               </div>
             </div>
-            <Link to="/pricing" className={`navbar-item ${Classes.navItem}`}>
+
+            <NavLink
+              activeClassName={Classes.active}
+              to="/pricing"
+              className={`navbar-item ${Classes.navItem}`}
+              onClick={handleClick}
+            >
               Pricing
-            </Link>
-            <Link to="/resources" className={`navbar-item ${Classes.navItem}`}>
+            </NavLink>
+
+            <NavLink
+              activeClassName={Classes.active}
+              to="/resources"
+              className={`navbar-item ${Classes.navItem}`}
+              onClick={handleClick}
+            >
               Resources
-            </Link>
+            </NavLink>
           </div>
           <div className="navbar-end">
             <div className="navbar-item">
-              <button className="button" type="submit">
-                Login
-              </button>
+              {!currentUser && (
+                <Link
+                  to="/login"
+                  className="button"
+                  type="submit"
+                  onClick={handleClick}
+                >
+                  Login
+                </Link>
+              )}
             </div>
             <div className="navbar-item">
-              <button className={`button ${Classes.btnSignUp}`}>
-                {" "}
-                Sign Up
-              </button>
+              {!currentUser && (
+                <Link
+                  to="/signup"
+                  className={`button ${Classes.btnheader}`}
+                  onClick={handleClick}
+                >
+                  {" "}
+                  Sign Up
+                </Link>
+              )}
+            </div>
+            <div className="navbar-item">
+              {currentUser && (
+                <Link
+                  to="/dashboard"
+                  className={`button ${Classes.btnheader}`}
+                  onClick={handleClick}
+                >
+                  {" "}
+                  {currentUser.email}
+                </Link>
+              )}
             </div>
           </div>
         </div>
       </nav>
+
       <Outlet />
     </React.Fragment>
   );

@@ -1,10 +1,47 @@
-import React from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import Classes from "../Components/Navbar.module.css";
 import headerImage from "../assets/backgroundImage-removebg-preview.png";
 import UrlShortner from "../Components/UrlShortner";
 import Cards from "../Components/Cards";
+import Carousel from "../Components/Carousel";
+import Footer from "../Components/Footer";
+import "../Pages/Home.css";
+import "animate.css";
+import Offer from "../Components/Offer";
+import { Link } from "react-router-dom";
+
+// import MovableSlider from "../Components/MovableSlider";
 
 const Home = () => {
+  // const [isIntersecting, setIntersecting] = useState(false);
+  const [link, setLink] = useState("");
+  const ref = useRef(null);
+
+  const getValue = (val) => {
+    setLink(val);
+    console.log(`link is located at the home component`);
+  };
+  console.log(link);
+
+  useEffect(() => {
+    const allsection = document.querySelectorAll(".section");
+    const revealSection = function (entries, observer) {
+      const [entry] = entries;
+      if (!entry.isIntersecting) return;
+      entry.target.classList.remove("section-hidden");
+      observer.unobserve(entry.target);
+    };
+    const sectionObserver = new IntersectionObserver(revealSection, {
+      root: null,
+      threshold: 0.1,
+    });
+
+    allsection.forEach((section) => {
+      sectionObserver.observe(section);
+      section.classList.add("section-hidden");
+    });
+  }, []);
+
   const style = { color: "#111135" };
   const heroMessage = `Simplify Links, Maximize Engagement`;
   const description = `We understand the value of simplicity and efficiency when it
@@ -16,36 +53,51 @@ const Home = () => {
     <React.Fragment>
       <header className={`Hero pt-5 ${Classes.header}`}>
         <div className="container">
-          <div className="columns pt-6">
-            <div className="column">
+          <div className={`columns pt-6 m-3 ${Classes}`} ref={ref}>
+            <div className="column has-text-centered-mobile animate__animated animate__backInLeft animate__slow 2s">
               <h1
-                className="is-size-2 has-text-weight-bold has-text-centered-mobile"
+                className="is-size-2-desktop is-size-5-mobile has-text-weight-bold "
                 style={style}
               >
                 {heroMessage}
               </h1>
               <p
                 style={style}
-                className="mt-5 is-size-5 has-text-centered-mobile"
+                className="mt-5 is-size-5  is-size-6-mobile has-text-centered-mobile"
               >
                 {description}
               </p>
-              <button
-                className={`button is-medium mt-5 has-text-centered-mobile ${Classes.btnheader}`}
+              <Link
+                to="/login"
+                className={`button is-medium is-responsive mt-5  ${Classes.btnheader}`}
               >
                 {btnText}
-              </button>
+              </Link>
             </div>
-            <div className="column">
+            <div className="column animate__animated animate__backInRight animate__slow 2s">
               <img src={headerImage} alt="" />
             </div>
           </div>
         </div>
       </header>
       <main>
-        <UrlShortner />
-        <Cards />
+        <section className="section">
+          <UrlShortner getValue={getValue} />
+        </section>
+        <section className="section">
+          <Cards />
+        </section>
+        <section className="section">
+          <Carousel />
+        </section>
+        <section className="section">
+          <Offer />
+        </section>
+        {/* <MovableSlider /> */}
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </React.Fragment>
   );
 };

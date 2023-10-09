@@ -1,42 +1,88 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* App.css */
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+#app {
+  min-height: 100%;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.main-content {
+  /* flex: 1; */
+}
+
+.footer {
+  margin-top: -12px;
+}
+
+@media screen and (max-width: 768px) {
+  #menu-toggle:checked + .navbar-menu {
+    display: block;
+  }
+}
+
+.aside {
+  border-radius: 2px;
+  border-right: 1px solid rgb(208, 204, 204);
+  background: #fdfdfd;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
+
+.nav-link {
+  text-decoration: none;
+  padding: 8px 16px;
+  background-color: #edf2ff;
+  border-radius: 4px;
+}
+
+.nav-link:hover {
+  background-color: #ddd;
+}
+.active-link {
+  background-color: red;
+}
+
+.table {
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .table {
+    width: 100%;
+    overflow-x: auto;
+  }
+}
+
+.profile {
+  min-width: 3.2rem;
+  height: 1rem;
+  color: #fff;
+  background-color: #273144;
+  font-size: 2rem;
+  line-height: 3.2rem;
   text-align: center;
+  border-radius: 100%;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.shortener__viewShot {
+  margin-top: 20px;
+  border: 1px solid gainsboro;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  color: rgb(64, 64, 66);
+  align-items: center;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.shortener__viewShot button {
+  background-color: transparent;
+  border: none;
+  color: red;
+  padding: 1rem;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.shortener__viewShot button:hover {
+  color: rgb(64, 64, 66);
 }
