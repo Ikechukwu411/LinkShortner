@@ -24,10 +24,10 @@ const Login = () => {
             <div className="column">
               <div className="box">
                 <div className="media">
-                  <div className="media-left">
-                    <figure className="image is-128x128">
+                  <div className="media">
+                    {/* <figure className="image is-128x128">
                       <img src={SignInjpeg} alt="login" width={200} />
-                    </figure>
+                    </figure> */}
                   </div>
                   <div className="media-content">
                     <LoginForm />
