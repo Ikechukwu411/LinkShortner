@@ -9,11 +9,13 @@ import "../Pages/Home.css";
 import "animate.css";
 import Offer from "../Components/Offer";
 import { Link } from "react-router-dom";
+import ScrollSwiper from "../Components/ScrollSwiper";
 
 // import MovableSlider from "../Components/MovableSlider";
 
 const Home = () => {
   // const [isIntersecting, setIntersecting] = useState(false);
+
   const [link, setLink] = useState("");
   const ref = useRef(null);
 
@@ -33,7 +35,7 @@ const Home = () => {
     };
     const sectionObserver = new IntersectionObserver(revealSection, {
       root: null,
-      threshold: 0.1,
+      threshold: 0.09,
     });
 
     allsection.forEach((section) => {
@@ -51,53 +53,55 @@ const Home = () => {
   const btnText = `Get Started For Free`;
   return (
     <React.Fragment>
-      <header className={`Hero pt-5 ${Classes.header}`}>
-        <div className="container">
-          <div className={`columns pt-6 m-3 ${Classes}`} ref={ref}>
-            <div className="column has-text-centered-mobile animate__animated animate__backInLeft animate__slow 2s">
-              <h1
-                className="is-size-2-desktop is-size-5-mobile has-text-weight-bold "
-                style={style}
-              >
-                {heroMessage}
-              </h1>
-              <p
-                style={style}
-                className="mt-5 is-size-5  is-size-6-mobile has-text-centered-mobile"
-              >
-                {description}
-              </p>
-              <Link
-                to="/login"
-                className={`button is-medium is-responsive mt-5  ${Classes.btnheader}`}
-              >
-                {btnText}
-              </Link>
-            </div>
-            <div className="column animate__animated animate__backInRight animate__slow 2s">
-              <img src={headerImage} alt="" />
+      <div>
+        <header className={`Hero pt-5 ${Classes.header}`}>
+          <div className="container">
+            <div className={`columns pt-6 m-3 ${Classes}`} ref={ref}>
+              <div className="column has-text-centered-mobile animate__animated animate__backInLeft animate__slow 2s">
+                <h1
+                  className="is-size-2-desktop is-size-5-mobile has-text-weight-bold "
+                  style={style}
+                >
+                  {heroMessage}
+                </h1>
+                <p
+                  style={style}
+                  className="mt-5 is-size-5  is-size-6-mobile has-text-centered-mobile"
+                >
+                  {description}
+                </p>
+                <Link
+                  to="/login"
+                  className={`button is-medium is-responsive mt-5  ${Classes.btnheader}`}
+                >
+                  {btnText}
+                </Link>
+              </div>
+              <div className="column animate__animated animate__backInRight animate__slow 2s">
+                <img src={headerImage} alt="" />
+              </div>
             </div>
           </div>
-        </div>
-      </header>
-      <main>
-        <section className="section">
-          <UrlShortner getValue={getValue} />
-        </section>
-        <section className="section">
-          <Cards />
-        </section>
-        <section className="section">
-          <Carousel />
-        </section>
-        <section className="section">
-          <Offer />
-        </section>
-        {/* <MovableSlider /> */}
-      </main>
-      <footer>
-        <Footer />
-      </footer>
+        </header>
+        <main>
+          <div className="up has-text-centered-mobile section ">
+            <UrlShortner getValue={getValue} />
+          </div>
+          <div className="up has-text-centered-mobile section ">
+            <Cards />
+          </div>
+          <div className=" up has-text-centered-mobile section ">
+            <Carousel />
+          </div>
+          <div className="up has-text-centered-mobile section ">
+            <Offer />
+          </div>
+          <div>{/* <ScrollSwiper /> */}</div>
+        </main>
+        <footer>
+          <Footer />
+        </footer>
+      </div>
     </React.Fragment>
   );
 };

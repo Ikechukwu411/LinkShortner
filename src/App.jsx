@@ -19,9 +19,20 @@ import { useContext } from "react";
 import Settings from "./Pages/Dashboard/Settings";
 import CreateNew from "./Pages/Dashboard/CreateNew";
 // import ProtectedRoutes from "../Firebase/ProtectedRoutes";
+import "../src/App.css";
+// import ClipLoader from "react-spinners/ClipLoader";
+import DotLoader from "react-spinners/DotLoader";
+import React, { useState, useEffect } from "react";
 
 const App = () => {
   const { currentUser } = useContext(AuthContext);
+  const [Loading, setLoading] = useState(false);
+
+  const override = {
+    display: "block",
+    margin: "10rem auto",
+    borderColor: "red",
+  };
 
   // Define routes for authenticated users
   const authenticatedRoutes = (
@@ -54,12 +65,34 @@ const App = () => {
     </>
   );
 
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        {currentUser ? authenticatedRoutes : nonAuthenticatedRoutes}
-      </Routes>
-    </BrowserRouter>
+    <React.Fragment className="load">
+      {Loading ? (
+        <DotLoader
+          className="load"
+          color={"#D06F23"}
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+          cssOverride={override}
+        />
+      ) : (
+        <div>
+          <BrowserRouter>
+            <Routes>
+              {currentUser ? authenticatedRoutes : nonAuthenticatedRoutes}
+            </Routes>
+          </BrowserRouter>
+        </div>
+      )}
+    </React.Fragment>
   );
 };
 

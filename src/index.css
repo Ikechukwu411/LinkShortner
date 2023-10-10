@@ -109,3 +109,18 @@ button:focus-visible {
   background-color: #edf2ff;
   color: blue;
 }
+.sec {
+  width: 50%;
+  margin: auto;
+  max-width: 500px;
+  min-width: 300px;
+}
+.imgtag {
+  width: 100%;
+  height: auto;
+}
+.load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

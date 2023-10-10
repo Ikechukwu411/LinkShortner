@@ -21,11 +21,11 @@ const Signup = () => {
             <span className="is-size-4">SnapUrl</span>
           </Link>
         </div>
-        <div className="container cont">
+        <div className="container  sec">
           <div className="card box">
             <div className="columns">
               <div className="column pt-6 mt-6">
-                <img src={signUp} alt="signup" />
+                <img src={signUp} alt="signup" className="imgtag" />
               </div>
               <div className="column">
                 <div className="has-text-centered">

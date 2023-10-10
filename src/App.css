@@ -1,6 +1,6 @@
 /* App.css */
 
-html,
+/* html,
 body,
 #app {
   height: 100%;
@@ -18,15 +18,15 @@ body,
 
 .footer {
   margin-top: -12px;
-}
-
+} */
+/* 
 @media screen and (max-width: 768px) {
   #menu-toggle:checked + .navbar-menu {
     display: block;
   }
-}
+} */
 
-.aside {
+/* .aside {
   border-radius: 2px;
   border-right: 1px solid rgb(208, 204, 204);
   background: #fdfdfd;
@@ -85,4 +85,10 @@ body,
 }
 .shortener__viewShot button:hover {
   color: rgb(64, 64, 66);
+} */
+
+.load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
