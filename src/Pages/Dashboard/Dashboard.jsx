@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   return (
-    <div id="app">
+    <React.Fragment id="app">
       <DashboardNav />
       <section className="main-content columns is-fullheight">
         <SideBar />
@@ -31,7 +31,7 @@ const Dashboard = () => {
                   >
                     <img src={image1} alt="" width={250} />
                   </span>
-                  <span className="column">
+                  <span className="column" style={{ width: "50%" }}>
                     <p>Make It Short</p>
                     <Link to="/link" className="button mt-2 is-link is-light">
                       Go to Link
@@ -98,7 +98,7 @@ const Dashboard = () => {
           </div>
         </div>
       </section>
-    </div>
+    </React.Fragment>
   );
 };
 
